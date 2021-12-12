@@ -179,19 +179,6 @@ export function AddQuestion(props){
                   <option value={constant.QUESTION_TYPE.SUBJECTIVE}>{constant.QUESTION_TYPE.SUBJECTIVE}</option>
                 </select>
                 <div className="m-2">
-                  {/* {submittedQuestion != null ? (
-                    ""
-                  ) : (
-                    <button
-                      id="addQuestionPopover "
-                      className="btn btn-sm bg-dark text-white"
-                      onClick={() => {
-                        saveQuestion();
-                      }}
-                    >
-                      Add Question
-                    </button>
-                  )} */}
                 </div>
               </div>
           

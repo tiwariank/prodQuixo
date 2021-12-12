@@ -291,7 +291,7 @@ export default function QuestionPanel(props) {
                             constants.QUESTION_TYPE.IMAGE_MCQ ? (
                               <img
                                 className="option-image my-4"
-                                src={`${constant.BASE_URL}/media/${e.option}`}
+                                src={`${constants.BASE_URL}/media/${e.option}`}
                               />
                             ) : (
                               <span className="option_text_css">

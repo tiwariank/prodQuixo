@@ -5,6 +5,10 @@ import Test from '../assets/background/test.jpg'
 import './dashboard.css'
 import HttpTransferService from '../../utils/httptransfer';
 import { Route } from "react-router-dom";
+import Constants from '../../utils/constants';
+
+
+const constant = new Constants();
 const httptransfer = new HttpTransferService();
 
 
