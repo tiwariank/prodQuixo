@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.logo_img_css{
+	height : 88px;
+	width: 159px;
+}
+
+.oval-header-outer{
+	background-color: #e0e0e0;
+    border-radius: 12px;
+    position: fixed;
+    top: 1%;
+    z-index: 110;
+    width: 96%;
+}
+
+.logo{
+   height: 65px;
+   width: 65px;
+}
