@@ -248,7 +248,7 @@ export function AddQuestion(props){
                             <span>{e.isCorrect}</span>
                             {
                               questionType == constant.QUESTION_TYPE.IMAGE_MCQ ? 
-                              <img className="option-image my-4" src={`http://localhost:8000/media/${e.value}`}/>
+                              <img className="option-image my-4" src={`${constant.BASE_URL}/media/${e.value}`}/>
                               : ""
                             }
                             
@@ -283,26 +283,7 @@ export function AddQuestion(props){
                   </div>
                 </div>
 
-              {/* <Popover
-                placement="top"
-                isOpen={isAddQuestionBlockEnable}
-                target="addQuestionPopover"
-                toggle={() => {
-                  showAddQuestionBlock(!isAddQuestionBlockEnable);
-                }}
-                className="question_popover"
-              >
-                <PopoverHeader>
-                  <span>Add Question Panel</span>
-                  <button
-                    className="float-right"
-                    onClick={() => submitQuestion()}
-                  >
-                    submit
-                  </button>
-                </PopoverHeader>
-                <PopoverBody></PopoverBody>
-              </Popover> */}
+              
             </ModalBody>
             <ModalFooter>
               {/* <div className="d-flex justify-content-center w-100">

@@ -48,7 +48,7 @@ const queryQuiz=async()=>{
           <div 
           className="hover-zoom"
           >
-            <img src={`http://localhost:8000/media/${e.imageUrl}`} className="quizz_image_css"/>
+            <img src={`${constant.BASE_URL}/media/${e.imageUrl}`} className="quizz_image_css"/>
           </div>
           
       </div>
