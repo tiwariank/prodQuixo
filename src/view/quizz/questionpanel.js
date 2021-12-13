@@ -19,34 +19,6 @@ const constants = new Constants()
 
 const httptransfer = new HttpTransferService();
 
-const tutorialSteps = [
-  {
-    label: 'San Francisco – Oakland Bay Bridge, United States',
-    imgPath:
-      'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
-  },
-  {
-    label: 'Bird',
-    imgPath:
-      'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
-  },
-  {
-    label: 'Bali, Indonesia',
-    imgPath:
-      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80',
-  },
-  {
-    label: 'NeONBRAND Digital Marketing, Las Vegas, United States',
-    imgPath:
-      'https://images.unsplash.com/photo-1518732714860-b62714ce0c59?auto=format&fit=crop&w=400&h=250&q=60',
-  },
-  {
-    label: 'Goč, Serbia',
-    imgPath:
-      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
-  },
-];
-
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: "auto",
@@ -88,7 +60,6 @@ export default function QuestionPanel(props) {
       let url = window.location.href.split('/');
       let id = url[url.length - 1 ]
       questionQuery(id);
-      // optionQuery(props.quizId);
     }, []
   )
 
@@ -116,8 +87,6 @@ export default function QuestionPanel(props) {
 
 
   const handleNext = () => {
-
-    // setActiveStep((prevActiveStep) => prevActiveStep + 1);
     if(activeStep + 1 < maxSteps){
       setActiveStep(activeStep +1)
       setOptionId(null);
@@ -131,26 +100,10 @@ export default function QuestionPanel(props) {
   };
 
   const handleLike = (props,e) => {
-    console.log("45")
-    console.log(props)  
-    console.log($('#submitModal'))
-    console.log(Object.getPrototypeOf($('#submitModal')).show())
-    // Object.getPrototypeOf($('#submitModal')).show()
-    console.log(document.getElementById("submitModal"))
     if(e.target.id){
       let tempUserSelections = userSelections;
-      // if(tempUserSelections[activeStep]){
-      //   tempUserSelections[activeStep] = props.option_id;
-      // } else {
-      //   tempUserSelections.push(props.option_id)
-      // }
-
       tempUserSelections[activeStep + 1] = props.option_id;
-      console.log("submittd option")
-      console.log(activeStep)
       setUserSelections(tempUserSelections)
-      console.log("144")
-      console.log(tempUserSelections)
       setOption(props.option_id)
       setOptionId(props.option_id)
     }
@@ -167,8 +120,6 @@ export default function QuestionPanel(props) {
 
     let percentage = (correctCount/questions.length) * 100;
     setResposneCount(percentage)
-    console.log("158")
-    console.log(correctCount)
     setModalState(true);
   }
 

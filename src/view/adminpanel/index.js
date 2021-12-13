@@ -37,7 +37,7 @@ export default function AdminHome(props){
   const queryQuiz=async()=>{
     let quizQueryResponse = await httptransfer.quizQuery();
     if(quizQueryResponse.status == 200){
-      setQuizList(quizQueryResponse.data.Result)
+      setQuizList(quizQueryResponse.data.Result.reverse())
     }
   }
 
@@ -81,10 +81,7 @@ export default function AdminHome(props){
               <div className="card m-5">
                 {/* <img className="card-img-top" src="..." alt="Card image cap" /> */}
                 <div className="card-body">
-                  <h5 className="card-title">Card title</h5>
-                  <p className="card-text">
-                    {e.quiz}
-                  </p>
+                  <h5 className="card-title">{e.quiz}</h5>
                   <a href="#" className="btn btn-primary btn-sm"
                   onClick={()=>{toggleAddQuestionPanel(e.quiz_id)}}
                   >

@@ -62,6 +62,7 @@ export function AddQuestion(props){
         setOptionList([])
         setOptionList(tempList)
         setCurrentoption("")
+        showAddOptionBlock(!isAddOptionBlockEnable);
         // if(questionType != "IMAGE_MCQ"){
         //   let tempList = optionList;
         //   tempList.push({
@@ -153,7 +154,7 @@ export function AddQuestion(props){
             isOpen={props.isOpen}
             toggle={props.toggle}
             className="addquiz-modal"
-            size = "xl"
+            size="xl"
             centered={false}
           >
             <ModalHeader toggle={props.toggle}>
@@ -170,44 +171,64 @@ export function AddQuestion(props){
                   onChange={(e) => {
                     setCurrentQuestion(e.target.value);
                   }}
+                  placeholder="Enter Question here"
+                  
                 />
 
-                <select class="custom-select custom-select-lg mb-3" onChange={(e)=>{setQuestionType(e.target.value)}}>
-                  <option value ={null} selected>Open this select menu</option>
-                  <option value={constant.QUESTION_TYPE.MCQ}>{constant.QUESTION_TYPE.MCQ}</option>
-                  <option value={constant.QUESTION_TYPE.IMAGE_MCQ}>{constant.QUESTION_TYPE.IMAGE_MCQ}</option>
-                  <option value={constant.QUESTION_TYPE.SUBJECTIVE}>{constant.QUESTION_TYPE.SUBJECTIVE}</option>
+                <select
+                  class="custom-select custom-select-lg mb-3"
+                  onChange={(e) => {
+                    setQuestionType(e.target.value);
+                  }}
+                >
+                  <option value={null} selected>
+                    Question Type
+                  </option>
+                  <option value={constant.QUESTION_TYPE.MCQ}>
+                    {constant.QUESTION_TYPE.MCQ}
+                  </option>
+                  <option value={constant.QUESTION_TYPE.IMAGE_MCQ}>
+                    {constant.QUESTION_TYPE.IMAGE_MCQ}
+                  </option>
+                  <option value={constant.QUESTION_TYPE.SUBJECTIVE}>
+                    {constant.QUESTION_TYPE.SUBJECTIVE}
+                  </option>
                 </select>
-                <div className="m-2">
-                </div>
+                <div className="m-2"></div>
               </div>
-          
-              <div>
-                  <div className="px-4">
-                    <Label>Options</Label>
-                    <div>
-                        {
-                          questionType === "IMAGE_MCQ" ? 
-                          <input type="file" onChange={(e)=>{
 
+              <div>
+                <div className="px-4">
+                  <Label>Options</Label>
+                  <div className="row">
+                    <div className="col-9">
+                      {questionType === "IMAGE_MCQ" ? (
+                        <input
+                          type="file"
+                          onChange={(e) => {
                             // optionImageUpload(e.target.files)
-                            let fileArr =e.target.files[0].name.split(".")
-                            let fileFormat = fileArr[1]
-                            httptransfer.createImgeOptionName({
-                              'quiz_id' : props.quizId,
-                              'img_format': fileFormat,
-                              'option_type' : questionType
-                            }).then(res=>{
-                              if(res.status == 200){
-                                if(res.data.result.option){
-                                  optionImageUpload(e.target.files,res.data.result.option)
+                            let fileArr = e.target.files[0].name.split(".");
+                            let fileFormat = fileArr[1];
+                            httptransfer
+                              .createImgeOptionName({
+                                quiz_id: props.quizId,
+                                img_format: fileFormat,
+                                option_type: questionType,
+                              })
+                              .then((res) => {
+                                if (res.status == 200) {
+                                  if (res.data.result.option) {
+                                    optionImageUpload(
+                                      e.target.files,
+                                      res.data.result.option
+                                    );
+                                  }
                                 }
-                              }
-                            }
-                              )
-                         
-                          }}/> : 
-                          <input
+                              });
+                          }}
+                        />
+                      ) : (
+                        <input
                           className="form-control form-control-sm"
                           placeholder="plz enter the options over here"
                           onChange={(e) => {
@@ -220,63 +241,56 @@ export function AddQuestion(props){
                             }
                           }}
                         />
-                        }
-                        <button className="" onClick={() => saveOptions()}>
-                          Save
-                        </button>
-                      </div>
-                    {optionList.length > 0 ? (
-                      <div>
-                        {optionList.map((e, index) => (
-                          <div key={e + index}>
-
-                            <input type="radio" onChange={(event)=>{toggleSwitch(index)}} checked={e.isCorrect}/>
-                            <span>{index + 1}).{e.value}{e.isCorrect}</span>
-                            <span>{e.isCorrect}</span>
-                            {
-                              questionType == constant.QUESTION_TYPE.IMAGE_MCQ ? 
-                              <img className="option-image my-4" src={`${constant.BASE_URL}/media/${e.value}`}/>
-                              : ""
-                            }
-                            
-                          </div>
-                          
-                        ))}
-                       
-                      </div>
-                    ) : (
-                      <div>NO options are added yet !</div>
-                    )}
-                    <div></div>
-                    <div className="d-flex justify-content-center">
-                      <button
-                        className=""
-                        onClick={() => {
-                          showAddOptionBlock(!isAddOptionBlockEnable);
-                        }}
-                      >
-                        <i className="fa fa-plus"></i>
-                      </button>
+                      )}
                     </div>
-
-                    <div className="d-flex justify-content-center mt-4 text-white">
-                      <button
-                        className="btn btn-lg bg-dark"
-                        onClick={() => createQuestion()}
-                      >
-                        Submit Answer
+                    <div className="col-3">
+                      <button className="" onClick={() => saveOptions()}>
+                        Save
                       </button>
                     </div>
                   </div>
+                  {optionList.length > 0 ? (
+                    <div>
+                      {optionList.map((e, index) => (
+                        <div key={e + index}>
+                          <input
+                            type="radio"
+                            onChange={(event) => {
+                              toggleSwitch(index);
+                            }}
+                            checked={e.isCorrect}
+                          />
+                          <span>
+                            {index + 1}).{e.value}
+                            {e.isCorrect}
+                          </span>
+                          <span>{e.isCorrect}</span>
+                          {questionType == constant.QUESTION_TYPE.IMAGE_MCQ ? (
+                            <img
+                              className="option-image my-4"
+                              src={`${constant.BASE_URL}/media/${e.value}`}
+                            />
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div>NO options are added yet !</div>
+                  )}
+                  <div className="d-flex justify-content-center mt-4 text-white">
+                    <button
+                      className="btn btn-lg bg-dark text-white"
+                      onClick={() => createQuestion()}
+                    >
+                      Submit Answer
+                    </button>
+                  </div>
                 </div>
-
-              
+              </div>
             </ModalBody>
-            <ModalFooter>
-              {/* <div className="d-flex justify-content-center w-100">
-                <button id="addQuestionPopover">Add Question</button>
-              </div> */}
-            </ModalFooter>
+            <ModalFooter></ModalFooter>
           </Modal>
         </div>
       );

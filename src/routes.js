@@ -28,7 +28,6 @@ import React from 'react';
 const QuestionPanel=React.lazy(() => import('./view/quizz/questionpanel'));
 const Dashboard = React.lazy(()=> import('./view/defaultLayout/dashboard'));
 const AdminPanal = React.lazy(()=> import('./view/adminpanel/index'));
-const QuizPlayground  = React.lazy(()=> import('./view/quizz/quizplayground'))
 const LoginComponent = React.lazy(()=>import('./view/defaultLayout/login'))
 const routes = [
 //   { path: '/', exact: true, name: 'Home' },
@@ -59,7 +58,6 @@ const routes = [
   { path: '/quiz/:id',exact:true,name:'Quiz',component:QuestionPanel},
   { path: '/',exact:true,name:'Dashboard',component:Dashboard},
   { path: '/admin',exact:true,name:'AdminPanal',component:AdminPanal},
-  { path: '/play',exact:true,name:'QuizPlayground',component:QuizPlayground},
   { path: '/login',exact:true,name:'Login',component:LoginComponent}
 
 ];
