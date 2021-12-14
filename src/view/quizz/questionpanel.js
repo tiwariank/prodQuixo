@@ -1,21 +1,21 @@
-import React,{useEffect,useState} from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import MobileStepper from '@material-ui/core/MobileStepper';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import HttpTransferService from '../../utils/httptransfer';
+import React, { useEffect, useState } from "react";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import MobileStepper from "@material-ui/core/MobileStepper";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
+import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
+import HttpTransferService from "../../utils/httptransfer";
 // import Btbutton from './styleTest/buttonstyle';
-import $ from 'jquery'
-import { Modal,ModalHeader,ModalBody } from 'reactstrap';
+import $ from "jquery";
+import { Modal, ModalHeader, ModalBody, Row, Col, Container } from "reactstrap";
 import { Link } from "react-router-dom";
-import './questionpanel.css';
-import { Stepper } from 'react-form-stepper';
-import Constants from '../../utils/constants';
+import "./questionpanel.css";
+import { Stepper } from "react-form-stepper";
+import Constants from "../../utils/constants";
 
-const constants = new Constants()
+const constants = new Constants();
 
 const httptransfer = new HttpTransferService();
 
@@ -25,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   header: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
     height: 50,
     paddingLeft: theme.spacing(4),
     backgroundColor: theme.palette.background.default,
@@ -34,9 +34,9 @@ const useStyles = makeStyles((theme) => ({
   img: {
     height: 255,
     maxWidth: 400,
-    overflow: 'hidden',
-    display: 'block',
-    width: '100%',
+    overflow: "hidden",
+    display: "block",
+    width: "100%",
   },
 }));
 
@@ -44,24 +44,22 @@ export default function QuestionPanel(props) {
   const classNamees = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-  const [questions, setQuestions]=useState([])
-  const [selectedOptionId,setOptionId]=useState(null)
-  const [selectedOption,setOption] =useState(null)
-  const [userSelections,setUserSelections]=useState({})
-  const [correctOptionArr,setCorrectOptions]=useState([])
-  const [isSubmitModalOpen,setModalState] = useState(false)
-  const [scorePercentage,setResposneCount] = useState(0);
-  const [copyIndicator,setCopiedIcon] = useState(false);
-  const [maxSteps,setMaxSteps] = useState(0);
-  const [headStepper,setHeadStepper] = useState([]);
+  const [questions, setQuestions] = useState([]);
+  const [selectedOptionId, setOptionId] = useState(null);
+  const [selectedOption, setOption] = useState(null);
+  const [userSelections, setUserSelections] = useState({});
+  const [correctOptionArr, setCorrectOptions] = useState([]);
+  const [isSubmitModalOpen, setModalState] = useState(false);
+  const [scorePercentage, setResposneCount] = useState(0);
+  const [copyIndicator, setCopiedIcon] = useState(false);
+  const [maxSteps, setMaxSteps] = useState(0);
+  const [headStepper, setHeadStepper] = useState([]);
 
-  useEffect(
-    () => {
-      let url = window.location.href.split('/');
-      let id = url[url.length - 1 ]
-      questionQuery(id);
-    }, []
-  )
+  useEffect(() => {
+    let url = window.location.href.split("/");
+    let id = url[url.length - 1];
+    questionQuery(id);
+  }, []);
 
   const questionQuery = async (id) => {
     let questionList = [];
@@ -74,68 +72,68 @@ export default function QuestionPanel(props) {
 
     let tempQuestionList = [];
 
-    questionList.map((e,index) => {
+    questionList.map((e, index) => {
       tempOption = optionList.filter((a) => a.question_id == e.question_id);
       e["options"] = tempOption;
-      e['label'] = "";
+      e["label"] = "";
       tempQuestionList.push(e);
     });
     setQuestions(tempQuestionList);
     setMaxSteps(tempQuestionList.length);
   };
- 
-
 
   const handleNext = () => {
-    if(activeStep + 1 < maxSteps){
-      setActiveStep(activeStep +1)
+    if (activeStep + 1 < maxSteps) {
+      setActiveStep(activeStep + 1);
       setOptionId(null);
     }
   };
 
   const handleBack = () => {
-    if(activeStep > 0){
+    if (activeStep > 0) {
       setActiveStep((prevActiveStep) => prevActiveStep - 1);
     }
   };
 
-  const handleLike = (props,e) => {
-    if(e.target.id){
+  const handleLike = (props, e) => {
+    if (e.target.id) {
       let tempUserSelections = userSelections;
       tempUserSelections[activeStep + 1] = props.option_id;
-      setUserSelections(tempUserSelections)
-      setOption(props.option_id)
-      setOptionId(props.option_id)
+      setUserSelections(tempUserSelections);
+      setOption(props.option_id);
+      setOptionId(props.option_id);
     }
-  }
+  };
 
   const onSubmit = () => {
     var correctCount = 0;
-    questions.map((e,index)=>{
-      let temp = userSelections[index+1];
-      if(parseInt(e.ans) === temp){
+    questions.map((e, index) => {
+      let temp = userSelections[index + 1];
+      if (parseInt(e.ans) === temp) {
         correctCount++;
       }
-    })
+    });
 
-    let percentage = (correctCount/questions.length) * 100;
-    setResposneCount(percentage)
+    let percentage = (correctCount / questions.length) * 100;
+    setResposneCount(percentage);
     setModalState(true);
-  }
+  };
 
- const toggleSubmitModal =()=>{
+  const toggleSubmitModal = () => {
     setModalState(false);
-  }
+  };
 
-
- const reportCard = () => {
-   return (<div>
-     {activeStep == questions.length - 1 ? (
+  const reportCard = () => {
+    return (
+      <div>
+        {activeStep == questions.length - 1 ? (
           <div>
             <div className="d-flex justify-content-center">
-            <button className="submit_start" onClick={() => onSubmit()}>Submit</button>
+              <button className="submit_start" onClick={() => onSubmit()}>
+                Submit
+              </button>
             </div>
-            
+
             <div>
               <Modal
                 isOpen={isSubmitModalOpen}
@@ -145,13 +143,17 @@ export default function QuestionPanel(props) {
               >
                 <ModalHeader className="w-100">
                   <div className="w-100">
-                  <i className="fas fa-times" onClick={() => toggleSubmitModal()}></i>
+                    <i
+                      className="fas fa-times"
+                      onClick={() => toggleSubmitModal()}
+                    ></i>
                   </div>
                 </ModalHeader>
                 <ModalBody className="my-2 result-css">
-
                   <h1>Hii</h1>
-                  <h3 className="score_str_css">your have scored {scorePercentage + ""} %</h3>
+                  <h3 className="score_str_css">
+                    your have scored {scorePercentage + ""} %
+                  </h3>
                   <div>
                     <h3 className="text-center">
                       <i className="fas fa-share mx-2"></i>
@@ -189,8 +191,9 @@ export default function QuestionPanel(props) {
         ) : (
           ""
         )}
-   </div>)
- }
+      </div>
+    );
+  };
 
   return (
     <div>
@@ -231,12 +234,12 @@ export default function QuestionPanel(props) {
                   <KeyboardArrowLeft onClick={handleBack} />
                 </div>
               </div>
-              <div className="col-10">
+              <Container>
                 {questions.length > 0 && questions[activeStep].options ? (
-                  <div className="row">
+                  <Row>
                     {questions[activeStep].options.map((e) => {
                       return (
-                        <div className="col-6 mt-5">
+                        <Col md={3} sm={6} xs={6} xl={3}>
                           <div className="optionsrow">
                             {questions[activeStep].question_type ==
                             constants.QUESTION_TYPE.IMAGE_MCQ ? (
@@ -266,14 +269,15 @@ export default function QuestionPanel(props) {
                               ></i>
                             </div>
                           </div>
-                        </div>
+                        </Col>
                       );
                     })}
-                  </div>
+                  </Row>
                 ) : (
                   ""
                 )}
-              </div>
+              </Container>
+
               <div className="col-1">
                 <div className="d-inline arrow_btn">
                   <KeyboardArrowRight onClick={() => handleNext()} />

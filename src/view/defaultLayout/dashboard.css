@@ -1,84 +1,59 @@
 .hover-zoom {
     display: inline-block;
-    margin: 10px;
-    height: 406px;
-    width: 256px;
+    height: 100%;
+    width: 100%;
     border-radius: 35px;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: gray;
+    background-color: #221b351a;
     position: relative;
-    /* background-image: url('../assets/background/test.jpg'); */
     background-size: cover;
   }
 
   .quizz_image_css{
     display: inline-block;
-    margin: 10px;
-    height: 387px;
-    width: 280px;
+    height: 100%;
+    width: 100%;
     border-radius: 35px;
   }
 
+  /* .quizz_image_css:hover{
+    border-radius: 100%;
+    border :10px solid dark;
+    transform: scale(1.10);
+    box-shadow: 0 0 7px 7px #8080809c;
+  } */
+
   .hover-zoom:hover {
-    background-size: 120%;
-    z-index: 10;
+    /* background-size: 120%; */
+    /* z-index: 10; */
+    
+    /* zoom :200%;
+    border :10px solid dark; */
     /* height: "500px";
     width:"500px"; */
   }
 
-  /* .image-float{
-    display: inline-block;
-    position: absolute;
-    margin: 10px;
-    height: 384px;
-    width: 256px;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    background-size: 100%;
-    position: relative;
-    background-image: url('../assets/background/test.jpg');
-    background-size: cover;
-    font-size: 40px;
-    color: whitesmoke;
-  }
-
-  .image-float:hover{
-    display: inline-block;
-    position: absolute;
-    margin: 10px;
-    height: 384px;
-    width: 256px;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    background-size: 100%;
-    position: relative;
-    background-image: url('../assets/background/test.jpg');
-    background-size: cover;
-    font-size: 0px
-  } */
-
   .floated-text{
     position: absolute;
     z-index: 1;
-    top: 5%;
     left: 0%;
-    font-size: 40px;
+    font-size: 20px;
     color: whitesmoke;
-    margin: 10px;
-    height: 385px;
-    width: 256px;
+    height: 100%;
+    width: 100%;
     border-radius: 35px;
     background-image: linear-gradient(352deg , #2d2db1, transparent);
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.6s ease-in-out;
+    transition: all 0.6s ease-in-out;
   }
 
   .floated-text:hover{
-    z-index: -1;
+    z-index: 10;
+    height: 10%;
   }
 
 
@@ -92,9 +67,12 @@
       bottom: 0;
   }
 
+  /* image property*/
+
  .cover-css{
       background-image: url(../assets/background/cover.jpg);
-      height: 400px;
+      /* height: 400px; */
+      height: 100%;
       width: 100%; 
   }
 
@@ -102,120 +80,14 @@
   .float-cover{
     background-image: linear-gradient(352deg , #2d2db1, transparent);
     position: absolute;
-    height: 400px;
+    height: 100%;
     width: 100%;
   }
 
 
 
-  @media screen and (min-width: 400px) {
-
-    .hover-zoom {
-      display: inline-block;
-      margin: 10px;
-      height: 406px;
-      width: 300px;
-      border-radius: 35px;
-      -webkit-transition: all 0.3s ease-in-out;
-      transition: all 0.3s ease-in-out;
-      background-size: 100%;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-color: gray;
-      position: relative;
-      /* background-image: url('../assets/background/test.jpg'); */
-      background-size: cover;
-    }
-  
-    .hover-zoom:hover {
-      background-size: 120%;
-      z-index: 10;
-      /* height: "500px";
-      width:"500px"; */
-    }
-
-    .floated-text{
-      position: absolute;
-      z-index: 1;
-      top: 5%;
-      left: 0%;
-      font-size: 40px;
-      color: whitesmoke;
-      margin: 10px;
-      height: 385px;
-      width: 300px;
-      border-radius: 35px;
-      /* background-image: linear-gradient(352deg , #2d2db1, transparent); */
-      background-image: linear-gradient(352deg ,red, transparent);
-      -webkit-transition: all 0.3s ease-in-out;
-      transition: all 0.3s ease-in-out;
-    }
-  
-    .floated-text:hover{
-      z-index: -1;
-    }
-
-    .cover-css{
-      background-position: top;
-      background-image: url(../assets/background/cover.jpg);
-      height: 400px;
-      width: 100%; 
-    }
-    
-  }
 
 
 
-  @media screen and (min-width: 1500px) {
-
-    .hover-zoom {
-      display: inline-block;
-      margin: 10px;
-      height: 406px;
-      width: 315px;
-      border-radius: 35px;
-      -webkit-transition: all 0.3s ease-in-out;
-      transition: all 0.3s ease-in-out;
-      background-size: 100%;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-color: gray;
-      position: relative;
-      /* background-image: url('../assets/background/test.jpg'); */
-      background-size: cover;
-    }
-  
-    .hover-zoom:hover {
-      background-size: 120%;
-      z-index: 10;
-      /* height: "500px";
-      width:"500px"; */
-    }
-
-    .floated-text{
-      position: absolute;
-      z-index: 1;
-      top: 5%;
-      left: 0%;
-      font-size: 70px;
-      color: whitesmoke;
-      margin: 10px;
-      height: 385px;
-      width: 315px;
-      border-radius: 35px;
-      background-image: linear-gradient(352deg , #2d2db1, transparent);
-      -webkit-transition: all 0.3s ease-in-out;
-      transition: all 0.3s ease-in-out;
-    }
-  
-    .floated-text:hover{
-      z-index: -1;
-    }
-
-    .cover-css{
-      background-position: top;
-    }
-    
-  }
 
   
