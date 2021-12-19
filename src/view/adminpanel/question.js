@@ -28,6 +28,7 @@ export function AddQuestion(props) {
   const [optionList, setOptionList] = useState([]);
   const [currentOption, setCurrentoption] = useState("");
   const [currentImageOption, setCurrentImageoption] = useState("");
+  const [currentImageQuestion,setCurrentImageQuestion] = useState("");
   const [currentQuestion, setCurrentQuestion] = useState("");
   const { register, handleSubmit } = useForm();
   const [quiz, setQuiz] = useState("");
@@ -107,14 +108,20 @@ export function AddQuestion(props) {
     let inputjson = {
       quiz_id: props.quizId,
       option: optionList,
-      question_type: questionType,
-      question: currentQuestion,
+      question_type: questionType
     };
+
+    if(currentImageQuestion.imageUrl){
+      inputjson['question'] = currentImageQuestion.question;
+      inputjson['imageUrl'] = currentImageQuestion.imageUrl;
+    } else {
+      inputjson['question'] = currentQuestion;
+    }
 
     inputjson["option"] = optionList;
     let response = await httptransfer.createFullQuestion(inputjson);
     if (response.status == 200) {
-      props.toggle();
+      // props.toggle();
     }
 
     // if(questionType === constant.QUESTION_TYPE.IMAGE_MCQ){
@@ -144,7 +151,7 @@ export function AddQuestion(props) {
     setQuizzFlag(!isQuizzStored);
   };
 
-  const optionImageUpload = (file, fileName) => {
+  const optionImageUpload = (file, fileName,type) => {
     let fileArr = file[0].name.split(".");
     let fileFormat = fileArr[1];
     let formData = new FormData();
@@ -155,16 +162,23 @@ export function AddQuestion(props) {
         console.log("149");
         console.log(res.data.result.option);
         // setCurrentoption(res.data.result.option);
-        setCurrentImageoption({
-          option : currentOption,
-          imageUrl : res.data.result.option
-        })
+
+        if(type === "option"){
+          setCurrentImageoption({
+            option : currentOption,
+            imageUrl : res.data.result.option
+          })
+        } else {
+          setCurrentImageQuestion({
+            question : currentQuestion,
+            imageUrl : res.data.result.option
+          })
+        }
       }
     });
   };
 
-  const handleImage = (e) => {
-    console.log("i am here at this 151 ");
+  const handleImage = (e,type) => {
     let fileArr = e.target.files[0].name.split(".");
     let fileFormat = fileArr[1];
     httptransfer
@@ -176,13 +190,13 @@ export function AddQuestion(props) {
       .then((res) => {
         if (res.status == 200) {
           if (res.data.result.option) {
-            optionImageUpload(e.target.files, res.data.result.option);
+            optionImageUpload(e.target.files, res.data.result.option,type);
           }
         }
       });
   };
 
-  const imageInputOption = () => {
+  const imageInputOption = (type) => {
     return (
       <div className="d-inline-block">
         <input
@@ -191,7 +205,7 @@ export function AddQuestion(props) {
           type="file"
           id="formFile"
           onChange={(e) => {
-            handleImage(e);
+            handleImage(e,type);
           }}
         />
 
@@ -234,7 +248,7 @@ export function AddQuestion(props) {
                   }}
                 />
                 {questionType === constant.QUESTION_TYPE.IMAGE_MCQ &&
-                  imageInputOption()}
+                  imageInputOption("option")}
                 <button
                   className="btn btn-dark btn-sm float-right"
                   onClick={() => saveOptions()}
@@ -299,15 +313,9 @@ export function AddQuestion(props) {
           </div>
         </ModalHeader>
         <ModalBody>
-          <div className>
-            <input
-              className="form-control"
-              onChange={(e) => {
-                setCurrentQuestion(e.target.value);
-              }}
-              placeholder="Enter Question here"
-            />
-
+          <div >
+            <div>
+            <div className="m-2">
             <select
               className="mb-3 f-10 form-control form-control-sm mt-4 w-25"
               onChange={(e) => {
@@ -327,7 +335,20 @@ export function AddQuestion(props) {
                 {constant.QUESTION_TYPE.SUBJECTIVE}
               </option>
             </select>
-            <div className="m-2"></div>
+            </div>
+            </div>
+            <div>
+            <input
+              className="form-control w-75 d-inline-block" 
+              onChange={(e) => {
+                setCurrentQuestion(e.target.value);
+              }}
+              placeholder="Enter Question here"
+            />
+            <div className="d-inline-block">{imageInputOption("question")}</div>
+            </div>
+
+            
           </div>
           <div>
             <div className="">{OptionComponent()}</div>

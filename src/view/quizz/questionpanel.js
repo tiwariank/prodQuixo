@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import "./questionpanel.css";
 import { Stepper } from "react-form-stepper";
 import Constants from "../../utils/constants";
+import TestImage from '../assets/background/Halo-5-Chief-Vs-Locke-Art.jpg'
 
 const constants = new Constants();
 
@@ -226,6 +227,9 @@ export default function QuestionPanel(props) {
           ) : (
             ""
           )}
+          <div>
+            <img src={questions[activeStep] && questions[activeStep].imageUrl ?  `${constants.BASE_URL}/media/${questions[activeStep].imageUrl}` : ""} className="w-100"/>
+          </div>
 
           <div className="">
             <div className="row">
@@ -263,10 +267,10 @@ export default function QuestionPanel(props) {
                                 <img
                                   src={`${constants.BASE_URL}/media/${e.imageUrl}`}
                                   className="w-100"
-                                />{" "}
+                                />
                                 <figcaption className="textover_figcaption">
                                   {e.option}
-                                </figcaption>{" "}
+                                </figcaption>
                               </figure>
                             ) : (
                               // <figure>

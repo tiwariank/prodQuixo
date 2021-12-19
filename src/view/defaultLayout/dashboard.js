@@ -45,8 +45,7 @@ export default function Dashboard() {
         </div>
         <div className="hover-zoom" fluid>
           <img fluid
-            // src={`${constant.BASE_URL}/media/${e.imageUrl}`}
-            src={Test}
+            src={`${constant.BASE_URL}/media/${e.imageUrl}`}
             className="quizz_image_css"
           />
         </div>
