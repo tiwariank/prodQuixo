@@ -234,6 +234,7 @@ export default function QuestionPanel(props) {
                   <KeyboardArrowLeft onClick={handleBack} />
                 </div>
               </div>
+              <div className="col-10">
               <Container>
                 {questions.length > 0 && questions[activeStep].options ? (
                   <Row>
@@ -243,31 +244,60 @@ export default function QuestionPanel(props) {
                           <div className="optionsrow">
                             {questions[activeStep].question_type ==
                             constants.QUESTION_TYPE.IMAGE_MCQ ? (
-                              <img
-                                className="option-image my-4"
-                                src={`${constants.BASE_URL}/media/${e.option}`}
-                              />
+                              <figure class="txtover">
+                                  <div className="fix-heart">
+                                  <i
+                                    className={
+                                      selectedOptionId &&
+                                      selectedOptionId == e.option_id
+                                        ? "fas fa-heart heart-shape text-red"
+                                        : "fas fa-heart heart-shape"
+                                    }
+                                    id={
+                                      questions[activeStep].question_id +
+                                      e.option_id
+                                    }
+                                    onClick={(event) => handleLike(e, event)}
+                                  ></i>
+                                </div>
+                                <img
+                                  src={`${constants.BASE_URL}/media/${e.imageUrl}`}
+                                  className="w-100"
+                                />{" "}
+                                <figcaption className="textover_figcaption">
+                                  {e.option}
+                                </figcaption>{" "}
+                              </figure>
                             ) : (
+                              // <figure>
+                              // <img
+                              //   className="option-image my-4 img-fluid"
+                              //   src={`${constants.BASE_URL}/media/${e.option}`}
+                              // />
+                              // <figcaption>
+                              //   Text
+                              // </figcaption>
+                              // </figure>
+
                               <span className="option_text_css">
+                                 <div className="fix-heart">
+                                  <i
+                                    className={
+                                      selectedOptionId &&
+                                      selectedOptionId == e.option_id
+                                        ? "fas fa-heart heart-shape text-red"
+                                        : "fas fa-heart heart-shape"
+                                    }
+                                    id={
+                                      questions[activeStep].question_id +
+                                      e.option_id
+                                    }
+                                    onClick={(event) => handleLike(e, event)}
+                                  ></i>
+                                </div>
                                 {e.option}
                               </span>
                             )}
-
-                            <div className="fix-heart">
-                              <i
-                                className={
-                                  selectedOptionId &&
-                                  selectedOptionId == e.option_id
-                                    ? "fas fa-heart heart-shape text-red"
-                                    : "fas fa-heart heart-shape"
-                                }
-                                id={
-                                  questions[activeStep].question_id +
-                                  e.option_id
-                                }
-                                onClick={(event) => handleLike(e, event)}
-                              ></i>
-                            </div>
                           </div>
                         </Col>
                       );
@@ -277,7 +307,7 @@ export default function QuestionPanel(props) {
                   ""
                 )}
               </Container>
-
+              </div>
               <div className="col-1">
                 <div className="d-inline arrow_btn">
                   <KeyboardArrowRight onClick={() => handleNext()} />

@@ -61,19 +61,12 @@ export default function Dashboard() {
           <Header />
         </header>
 
-        {/* <div style={{ position: "relative" }}>
+        <div style={{ position: "relative" }}>
           <div className="float-cover"></div>
           <div className="cover-css"></div>
-        </div> */}
-
+        </div>
         <Route
           render={({ history }) => (
-            // <div className="w-100 d-flex flex-row flex-wrap mx-2">
-            //   {quizList && quizList.length > 0 ?  quizList.map((e) => {
-            //     return card(e,history);
-            //   }) : ""
-            // }
-            // </div>
             <Container fluid>
               <Row className="text-center">
                 {quizList && quizList.length > 0
