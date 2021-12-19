@@ -59,6 +59,7 @@ export default function QuestionPanel(props) {
   useEffect(() => {
     let url = window.location.href.split("/");
     let id = url[url.length - 1];
+    console.log("loading question")
     questionQuery(id);
   }, []);
 
@@ -227,11 +228,13 @@ export default function QuestionPanel(props) {
           ) : (
             ""
           )}
-          <div>
-            <img src={questions[activeStep] && questions[activeStep].imageUrl ?  `${constants.BASE_URL}/media/${questions[activeStep].imageUrl}` : ""} className="w-100"/>
+          <div className="d-flex justify-content-center">
+            <img 
+            src={questions[activeStep] && questions[activeStep].imageUrl ?  `${constants.BASE_URL}/media/${questions[activeStep].imageUrl}` : ""} 
+            className="d-flex justify-content-center"/>
           </div>
 
-          <div className="">
+          <div className="">  
             <div className="row">
               <div className="col-1">
                 <div className="d-inline arrow_btn">
