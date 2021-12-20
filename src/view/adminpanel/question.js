@@ -121,7 +121,7 @@ export function AddQuestion(props) {
     inputjson["option"] = optionList;
     let response = await httptransfer.createFullQuestion(inputjson);
     if (response.status == 200) {
-      // props.toggle();
+      props.toggle();
     }
 
     // if(questionType === constant.QUESTION_TYPE.IMAGE_MCQ){
@@ -420,11 +420,12 @@ export function Question(props) {
               <i className="fa fa-plus plus_icon"></i>
             </button>
           </div>
+          View Questions
         </ModalHeader>
-        <ModalBody>
+        <ModalBody className="view-question-scroller">
           {questionList.map((element) => {
             return (
-              <div className="card my-3">
+              <div className="card my-3 ">
                 <div className="bg-dark text-white">{element.question}</div>
                 <div>
                   {element.options.map((optionsObj) => {
