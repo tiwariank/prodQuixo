@@ -131,8 +131,8 @@ export default function QuestionPanel(props) {
         {activeStep == questions.length - 1 ? (
           <div>
             <div className="d-flex justify-content-center">
-              <button className="submit_start" onClick={() => onSubmit()}>
-                Submit
+              <button className="submit_start my-5" onClick={() => onSubmit()}>
+                SUBMIT
               </button>
             </div>
 
@@ -198,7 +198,7 @@ export default function QuestionPanel(props) {
   };
 
   return (
-    <div>
+    <div className="playground-panel">
       <div classNameName="btn btn-lg">
         <Link to="/">Home</Link>
       </div>
@@ -252,7 +252,7 @@ export default function QuestionPanel(props) {
                     <div className="mt-4">
                       {questions[activeStep].options.map((e) => {
                         return (
-                          <div>
+                          <div className="d-flex justify-content-center">
                             {questions[activeStep].question_type ==
                             constants.QUESTION_TYPE.IMAGE_MCQ ? (
                               <div className="row">
@@ -288,7 +288,7 @@ export default function QuestionPanel(props) {
                                 </Col>
                               </div>
                             ) : (
-                              <div className="row optionsMCQrow">
+                              <div className="row optionsMCQrow inline-block">
                                 <Col md={12} sm={12} xs={12} xl={12}>
                                   <div
                                     id={
