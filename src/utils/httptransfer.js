@@ -6,63 +6,63 @@ const constant = new Constants();
 export default class HttpTransferService  {
 
     quizQuery(){
-        let url = constant.BASE_URL + "/api/quiz"
+        let url = constant.BASE_URL + "/quiz"
         return this.getCall(url);
     }
 
     createQuiz(inputjson){
-        let url = constant.BASE_URL + "/api/quiz";
+        let url = constant.BASE_URL + "/quiz";
         return this.postCall(inputjson,url);
     }
 
     deleteQuiz(quizId){ 
-        let url = constant.BASE_URL + "/api/quiz/" + quizId;
+        let url = constant.BASE_URL + "/quiz/" + quizId;
         return this.deleteCall({},url)
     }
 
     createQuestion(inputjson){
-        let url = constant.BASE_URL + "/api/questions";
+        let url = constant.BASE_URL + "/questions";
         return this.postCall(inputjson,url);
     }
 
     createFullQuestion(inputjson){
-        let url = constant.BASE_URL + "/api/quest";
+        let url = constant.BASE_URL + "/quest";
         return this.postCall(inputjson,url);
     }
 
     createFullImageQuestion(inputjson){
-        let url = constant.BASE_URL + "/api/imagequest";
+        let url = constant.BASE_URL + "/imagequest";
         return this.postCallFile(inputjson,url);
     }
 
     createOption(inputjson){
-        let url = constant.BASE_URL + "/api/options";
+        let url = constant.BASE_URL + "/options";
         return this.postCall(inputjson,url);
     }
 
     uploadImageToServerStorage(inputjson){
-        let url = constant.BASE_URL + "/api/image";
+        let url = constant.BASE_URL + "/image";
         return this.postCallFile(inputjson,url);
     }
 
 
     createImgeOptionName(inputjson){
-        let url = constant.BASE_URL + "/api/imageoption";
+        let url = constant.BASE_URL + "/imageoption";
         return this.postCall(inputjson,url);
     }
 
     questionQuery(quizId){
-        let url = constant.BASE_URL + "/api/question/" +quizId;
+        let url = constant.BASE_URL + "/question/" +quizId;
         return this.getCall(url);
     }
 
     questionQueryByQuestion(quizId,questionId){
-        let url = constant.BASE_URL + "/api/question/" + quizId + "/" + questionId;
+        let url = constant.BASE_URL + "/question/" + quizId + "/" + questionId;
         return this.getCall(url) 
     }
 
     optionQuery(quizId){
-        let url = constant.BASE_URL + "/api/options/" +quizId;
+        let url = constant.BASE_URL + "/options/" +quizId;
         return this.getCall(url);
     }
     
