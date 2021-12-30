@@ -97,8 +97,9 @@ export default function QuestionPanel(props) {
     }
   };
 
-  const handleLike = (props, e) => {
-    if (e.target.id) {
+  const handleLike = (props, id) => {
+    console.log(" i am here")
+    if (id) {
       let tempUserSelections = userSelections;
       tempUserSelections[activeStep + 1] = props.option_id;
       setUserSelections(tempUserSelections);
@@ -265,9 +266,9 @@ export default function QuestionPanel(props) {
           </div>
           <div className="option-section">
             <div className="d-flex position-relative">
-              <div className="play-left-nav">
+              <div className="play-left-nav" onClick={handleBack}>
                 <div className="d-inline arrow_btn">
-                  <KeyboardArrowLeft onClick={handleBack} />
+                  <KeyboardArrowLeft />
                 </div>
               </div>
               <div className="play-center-container">
@@ -293,14 +294,14 @@ export default function QuestionPanel(props) {
                                         id={
                                           questions[activeStep].question_id +
                                           e.option_id
-                                        }
+                                        } 
                                         onClick={(event) =>
                                           handleLike(e, event)
                                         }
                                       ></i>
                                     </div>
                                     <img
-                                      src={`${constants.BASE_URL}media${e.imageUrl}`}
+                                      src={`${constants.BASE_URL}/media${e.imageUrl}`}
                                       className="w-100"
                                     />
                                     <figcaption className="textover_figcaption">
@@ -316,12 +317,20 @@ export default function QuestionPanel(props) {
                         <div>
                           {questions[activeStep].options.map((e) => {
                             return (
-                              <div className="d-flex justify-content-center">
+                              <div
+                                id={
+                                  questions[activeStep].question_id +
+                                  e.option_id
+                                }
+                                className="d-flex justify-content-center"
+                                onClick={(event) => handleLike(e, questions[activeStep].question_id +
+                                  e.option_id)}
+                              >
                                 <div className="optionsMCQrow inline-block">
                                   <div className="w-100"></div>
                                   <div
                                     className="row"
-                                    onClick={(event) => handleLike(e, event)}
+                                    // onClick={(event) => handleLike(e, event)}
                                   >
                                     <div className="col-8">
                                       <div
@@ -335,9 +344,11 @@ export default function QuestionPanel(props) {
                                         </span>
                                       </div>
                                     </div>
-                                    <div className="col-4">
+                                    <div
+                                      className="col-4"
+                                      onClick={(event) => handleLike(e, event)}
+                                    >
                                       <i
-                                       onClick={(event) => handleLike(e, event)}
                                         className={
                                           selectedOptionId &&
                                           selectedOptionId == e.option_id
@@ -359,9 +370,9 @@ export default function QuestionPanel(props) {
                   )}
                 </Container>
               </div>
-              <div className="play-right-nav">
+              <div className="play-right-nav" onClick={() => handleNext()}>
                 <div className="d-inline arrow_btn">
-                  <KeyboardArrowRight onClick={() => handleNext()} />
+                  <KeyboardArrowRight />
                 </div>
               </div>
             </div>
@@ -403,7 +414,6 @@ export default function QuestionPanel(props) {
           </div>
         </div>
       </div>
-     
     </div>
   );
 }

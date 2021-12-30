@@ -13,7 +13,8 @@ import {
   DropdownItem,
   NavbarText} from 'reactstrap';
 import './header.css';
-import { Route } from "react-router-dom";
+import { Route ,Link} from "react-router-dom";
+import Logo from '../assets/background/logo.ico';
 
 
 
@@ -85,8 +86,9 @@ class Header extends Component {
       <Navbar color="light" light expand="md"  className='float-nav-css'>
          <NavbarBrand href="/">
          <a className="nav-link active" href="#">
-              QXO
+              <img src={Logo} alt="logo"/>
             </a>
+            <Link to="/" />
          </NavbarBrand>
         <NavbarToggler onClick={()=>this.toggle()} />
         <Collapse isOpen={this.state.isOpen} navbar>

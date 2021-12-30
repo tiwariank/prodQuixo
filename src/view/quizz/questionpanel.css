@@ -45,6 +45,11 @@
     font-size: 20px;
 }
 
+.optionsMCQrow:hover{
+    transform: translate(0,7px);
+    box-shadow: 0 5px 5px 5px #94b0cd;
+}
+
 .heart-shape{
     margin-right: 0.5rem!important;
     margin-top: .5rem!important;
@@ -289,7 +294,12 @@
    }
 
    .play-left-nav{
+    flex: 1;
+   }
+
+   .play-left-nav:hover{
        flex: 1;
+       background-color: #30806736;
    }
 
    .play-center-container{
@@ -300,7 +310,17 @@
     flex: 1;
    }
 
+   .play-right-nav:hover{
+    flex: 1;
+    background-color: #30806736;
+   }
+
    .scroller-container{
        max-height: 100%;
        overflow-y: scroll;
+   }
+
+   * {
+    cursor: pointer;
+    caret-color: rgba(0,0,0,0) !important;
    }
