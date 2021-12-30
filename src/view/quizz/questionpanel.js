@@ -256,7 +256,7 @@ export default function QuestionPanel(props) {
               <img
                 src={
                   questions[activeStep] && questions[activeStep].imageUrl
-                    ? `${constants.BASE_URL}media${questions[activeStep].imageUrl}`
+                    ? `${constants.BASE_URL}/media${questions[activeStep].imageUrl}`
                     : ""
                 }
                 className="d-flex justify-content-center"
