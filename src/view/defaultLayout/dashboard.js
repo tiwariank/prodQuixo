@@ -56,9 +56,6 @@ export default function Dashboard() {
   return (
     <div>
       <div>
-        <header>
-          <Header />
-        </header>
 
         <div style={{ position: "relative" }}>
           <div className="float-cover"></div>
@@ -81,8 +78,6 @@ export default function Dashboard() {
             </Container>
           )}
         />
-
-        {/* <img className="hover-zoom" src={Test}/> */}
 
         <Footer />
       </div>

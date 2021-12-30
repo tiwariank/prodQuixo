@@ -81,8 +81,8 @@ class Header extends Component {
 
   header1 = () => {
     return (
-      <div>
-      <Navbar color="light" light expand="md">
+      <div className='fixed-top'>
+      <Navbar color="light" light expand="md"  className='float-nav-css'>
          <NavbarBrand href="/">
          <a className="nav-link active" href="#">
               QXO

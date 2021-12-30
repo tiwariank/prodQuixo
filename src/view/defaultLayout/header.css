@@ -18,3 +18,12 @@
    height: 65px;
    width: 65px;
 }
+
+.custom_fix-top{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 2000;
+}
+

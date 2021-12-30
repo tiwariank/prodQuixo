@@ -40,7 +40,7 @@
     border-radius: 19px;
     /* box-shadow: 5px 5px 5px 5px #b35252; */
     border : 5px solid white;
-    height: 53px;
+    /* height: 53px; */
     width: 80%;
     font-size: 20px;
 }
@@ -63,10 +63,6 @@
     background-color: #efdfdf;
 }
 
-.playground_css{
-    margin: 5rem;
-}
-
 .question_text{
     font-size :30px;
     font-weight: bold;
@@ -78,9 +74,6 @@
     padding-left: 3rem;
 }
 
-.playground_css{
-    margin: 1rem;
-}
 
 .question_text{
     padding-top: 1rem;
@@ -104,13 +97,13 @@
     color: white;
 }
 
-.steps_css{
-    border-radius: 0% !important;
-    width: 15px !important;
-    height: 15px !important;
+/* .steps_css{
+
+    width: 10px !important;
+    height: 10px !important;
     background: #0f074d !important;
-    padding: 13px!important;
-}
+    padding: 10px!important;
+} */
 
 .RFS-StepContainer{
     padding: 0 !important;
@@ -147,7 +140,7 @@
 
     .arrow_btn{
         position: absolute;
-        top: 54%;
+        top: 50%;
     }
 
     .option_text_css{
@@ -169,12 +162,40 @@
         background-color: rgb(224, 224, 224);
     } */
 
+    .stepper_outer_panel{
+
+    }
+
     .steps_css{
-        border-radius: 0% !important;
-        width: 15px !important;
-        height: 15px !important;
+        /* border-radius: 10px !important; */
+        width: 10px !important;
+        height: 4px !important;
         background: #0f074d !important;
-        padding: 13px!important;
+        display: inline-block;
+        cursor: pointer;
+        font-size: 0px;
+        margin: 0 2px 0 2px;
+    }
+
+    .step_css_active{
+        /* border-radius: 10px !important; */
+        width: 10px !important;
+        height: 4px !important;
+        background: red !important;
+        display: inline-block;
+        cursor: pointer;
+        font-size: 0px;
+        margin: 5px 5px 0 5px;
+        padding: 5px 5px 0 5px;
+    }
+    
+    .step_counter_css{
+        color: white;
+        font-weight: bold;
+    }
+
+    .RFS-StepMain .active{
+        background-color: red !important;
     }
 
     .RFS-StepContainer{
@@ -229,4 +250,57 @@
     box-shadow: 0 0 5px 8px #273bcd33;
     border-radius: 55px;
     background-image: url(../assets/background/playcover1.jpeg);
+    height: 90%;
   }
+
+  .stepper-panel{
+      min-height: 8%;
+  }
+
+  .option-section{
+      min-height: 50%;
+  }
+
+  .question-section{
+      min-height: 36%;
+  }
+
+  .playground-outerpanel{
+      height: 100%;
+      /* margin : 0 10px 0 10px; */
+      /* margin-top: 10%; */
+      display: flex;
+      justify-content: center;
+  }
+  
+  .mobile-view-css{
+      /* max-width: 1300px !important;
+      box-shadow: 0px 0px 8px 6px #b45656;
+      height: 98%; */
+      max-width: 622px !important;
+      min-width: 371px;
+      box-shadow: 0px 0px 8px 6px #e9e9e9;
+      height: 98%;
+      width: 100%;
+  }
+  
+   .play-nav-panel{
+       display: flex;
+   }
+
+   .play-left-nav{
+       flex: 1;
+   }
+
+   .play-center-container{
+       flex : 19;
+   }
+
+   .play-right-nav{
+    flex: 1;
+   }
+
+   .scroller-container{
+       max-height: 100%;
+       overflow-y: scroll;
+   }

@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function QuestionPanel(props) {
-  const classNamees = useStyles();
+  const classNames = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const [questions, setQuestions] = useState([]);
@@ -197,139 +197,175 @@ export default function QuestionPanel(props) {
     );
   };
 
-  return (
-    <div className="playground-panel">
-      <div classNameName="btn btn-lg">
-        <Link to="/">Home</Link>
+  const StepperComponent = () => {
+    console.log(questions);
+    return (
+      <div className="d-inline">
+        {questions.map((e, index) => (
+          <div
+            className={index == activeStep ? "step_css_active" : "steps_css"}
+            onClick={(e) => {
+              console.log(e.target.innerText);
+              setActiveStep(parseInt(e.target.innerText) - 1);
+            }}
+          >
+            <div className="d-flex justify-content-center">
+              <span className="step_counter_css">{index + 1}</span>
+            </div>
+          </div>
+        ))}
       </div>
-      <div className="row">
-        <div className="col-12">
-          <Stepper
+    );
+  };
+
+  return (
+    <div className="w-100 playground-outerpanel">
+      <div className="mobile-view-css">
+        <div className="h-100 w-100 scroller-container">
+          <div className="stepper-panel">
+            <div className="d-flex justify-content-center ">
+              <div className="stepper_outer_panel">
+                {StepperComponent()}
+                {/* <Stepper
             steps={questions}
             activeStep={activeStep}
             stepClassName="steps_css"
             nonLinear={true}
             size={1}
-            borderRadius={"0%"}
+            borderRadius={5}
             onClick={(e) => {
               console.log(e.target.innerText);
               setActiveStep(parseInt(e.target.innerText) - 1);
             }}
-          />
-        </div>
-      </div>
-      <div className="playground_css">
-        <div classNameName={classNamees.root}>
-          {questions.length > 0 ? (
-            <Paper square elevation={2} classNameName={classNamees.header}>
-              {/* <Typography>{questions[activeStep].question}</Typography> */}
-              <p className="question_text">{questions[activeStep].question}</p>
-            </Paper>
-          ) : (
-            ""
-          )}
-          <div className="d-flex justify-content-center">
-            <img
-              src={
-                questions[activeStep] && questions[activeStep].imageUrl
-                  ? `${constants.BASE_URL}/media/${questions[activeStep].imageUrl}`
-                  : ""
-              }
-              className="d-flex justify-content-center"
-            />
+          /> */}
+              </div>
+            </div>
           </div>
-
-          <div className="">
-            <div className="row">
-              <div className="col-1">
+          <div className="question-section">
+            {questions.length > 0 ? (
+              <Paper square elevation={2} classNameName={classNames.header}>
+                {/* <Typography>{questions[activeStep].question}</Typography> */}
+                <p className="question_text">
+                  {questions[activeStep].question}
+                </p>
+              </Paper>
+            ) : (
+              ""
+            )}
+            <div className="d-flex justify-content-center">
+              <img
+                src={
+                  questions[activeStep] && questions[activeStep].imageUrl
+                    ? `${constants.BASE_URL}media${questions[activeStep].imageUrl}`
+                    : ""
+                }
+                className="d-flex justify-content-center"
+              />
+            </div>
+          </div>
+          <div className="option-section">
+            <div className="d-flex position-relative">
+              <div className="play-left-nav">
                 <div className="d-inline arrow_btn">
                   <KeyboardArrowLeft onClick={handleBack} />
                 </div>
               </div>
-              <div className="col-10">
+              <div className="play-center-container">
                 <Container>
                   {questions.length > 0 && questions[activeStep].options ? (
                     <div className="mt-4">
-                      {questions[activeStep].options.map((e) => {
-                        return (
-                          <div className="d-flex justify-content-center">
-                            {questions[activeStep].question_type ==
-                            constants.QUESTION_TYPE.IMAGE_MCQ ? (
-                              <div className="row">
-                                <Col md={3} sm={6} xs={6} xl={3}>
-                                  <div className="optionsrow">
-                                    <figure class="txtover">
-                                      <div className="fix-heart">
-                                        <i
-                                          className={
-                                            selectedOptionId &&
-                                            selectedOptionId == e.option_id
-                                              ? "fas fa-heart heart-shape text-red"
-                                              : "fas fa-heart heart-shape"
-                                          }
-                                          id={
-                                            questions[activeStep].question_id +
-                                            e.option_id
-                                          }
-                                          onClick={(event) =>
-                                            handleLike(e, event)
-                                          }
-                                        ></i>
-                                      </div>
-                                      <img
-                                        src={`${constants.BASE_URL}/media/${e.imageUrl}`}
-                                        className="w-100"
-                                      />
-                                      <figcaption className="textover_figcaption">
-                                        {e.option}
-                                      </figcaption>
-                                    </figure>
-                                  </div>
-                                </Col>
-                              </div>
-                            ) : (
-                              <div className="row optionsMCQrow inline-block">
-                                <Col md={12} sm={12} xs={12} xl={12}>
+                      {questions[activeStep].question_type ===
+                      constants.QUESTION_TYPE.IMAGE_MCQ ? (
+                        <div className="row">
+                          {questions[activeStep].options.map((e) => {
+                            return (
+                              <Col md={3} sm={6} xs={6} xl={3}>
+                                <div className="optionsrow">
+                                  <figure class="txtover">
+                                    <div className="fix-heart">
+                                      <i
+                                        className={
+                                          selectedOptionId &&
+                                          selectedOptionId == e.option_id
+                                            ? "fas fa-heart heart-shape text-red"
+                                            : "fas fa-heart heart-shape"
+                                        }
+                                        id={
+                                          questions[activeStep].question_id +
+                                          e.option_id
+                                        }
+                                        onClick={(event) =>
+                                          handleLike(e, event)
+                                        }
+                                      ></i>
+                                    </div>
+                                    <img
+                                      src={`${constants.BASE_URL}media${e.imageUrl}`}
+                                      className="w-100"
+                                    />
+                                    <figcaption className="textover_figcaption">
+                                      {e.option}
+                                    </figcaption>
+                                  </figure>
+                                </div>
+                              </Col>
+                            );
+                          })}
+                        </div>
+                      ) : (
+                        <div>
+                          {questions[activeStep].options.map((e) => {
+                            return (
+                              <div className="d-flex justify-content-center">
+                                <div className="optionsMCQrow inline-block">
+                                  <div className="w-100"></div>
                                   <div
-                                    id={
-                                      questions[activeStep].question_id +
-                                      e.option_id
-                                    }
+                                    className="row"
                                     onClick={(event) => handleLike(e, event)}
                                   >
-                                    {" "}
-                                    <span className="option_text_css">
-                                      {e.option}
-                                    </span>
-                                    <i
-                                      className={
-                                        selectedOptionId &&
-                                        selectedOptionId == e.option_id
-                                          ? "fas fa-heart heart-shape text-red float-right"
-                                          : "fas fa-heart heart-shape float-right"
-                                      }
-                                    ></i>
+                                    <div className="col-8">
+                                      <div
+                                        id={
+                                          questions[activeStep].question_id +
+                                          e.option_id
+                                        }
+                                      >
+                                        <span className="option_text_css">
+                                          {e.option}
+                                        </span>
+                                      </div>
+                                    </div>
+                                    <div className="col-4">
+                                      <i
+                                       onClick={(event) => handleLike(e, event)}
+                                        className={
+                                          selectedOptionId &&
+                                          selectedOptionId == e.option_id
+                                            ? "fas fa-heart heart-shape text-red float-right"
+                                            : "fas fa-heart heart-shape float-right"
+                                        }
+                                      ></i>
+                                    </div>
                                   </div>
-                                </Col>
+                                </div>
                               </div>
-                            )}
-                          </div>
-                        );
-                      })}
+                            );
+                          })}
+                        </div>
+                      )}
                     </div>
                   ) : (
                     ""
                   )}
                 </Container>
               </div>
-              <div className="col-1">
+              <div className="play-right-nav">
                 <div className="d-inline arrow_btn">
                   <KeyboardArrowRight onClick={() => handleNext()} />
                 </div>
               </div>
             </div>
-          </div>
-          <MobileStepper
+            {/* <MobileStepper
             steps={maxSteps}
             position="static"
             variant="text"
@@ -362,10 +398,9 @@ export default function QuestionPanel(props) {
                 Back
               </Button>
             }
-          />
+          /> */}
+          </div>
         </div>
-        <div></div>
-        <div></div>
       </div>
       {reportCard()}
     </div>
