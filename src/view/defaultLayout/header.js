@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   Collapse,
   Navbar,
@@ -11,38 +11,35 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavbarText} from 'reactstrap';
-import './header.css';
-import { Route ,Link} from "react-router-dom";
-import Logo from '../assets/background/logo.ico';
-
-
+  NavbarText,
+} from "reactstrap";
+import "./header.css";
+import { Route, Link } from "react-router-dom";
+import Logo from "../assets/background/logo.ico";
 
 class Header extends Component {
-
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       isOpen: false,
-      isAdminPage : false,
-    }
+      isAdminPage: false,
+    };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     let url = window.location;
-    console.log("31")
-    console.log(url)
-    if(url.pathname === "/admin"){
+    console.log("31");
+    console.log(url);
+    if (url.pathname === "/admin") {
       this.setState({
-        isAdminPage : true
-      })
-    } else{
+        isAdminPage: true,
+      });
+    } else {
       this.setState({
-        isAdminPage : false
-      })
+        isAdminPage: false,
+      });
     }
   }
-
 
   header = () => {
     return (
@@ -73,88 +70,90 @@ class Header extends Component {
     );
   };
 
-  toggle(){
+  toggle() {
     this.setState({
-      isOpen : !this.state.isOpen
-    })
-
+      isOpen: !this.state.isOpen,
+    });
   }
 
   header1 = () => {
     return (
-      <div className='fixed-top'>
-      <Navbar color="light" light expand="md"  className='float-nav-css'>
-         <NavbarBrand href="/">
-         <a className="nav-link active" href="#">
-              <img src={Logo} alt="logo"/>
-            </a>
-            <Link to="/" />
-         </NavbarBrand>
-        <NavbarToggler onClick={()=>this.toggle()} />
-        <Collapse isOpen={this.state.isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink href="/components/"><a className="nav-link" href="#">
-              <i className="fas fa-glass-cheers px-2"></i>
-              Party
-            </a></NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
-              <a className="nav-link" href="#">
-              <i className="fa fa-comments px-2" aria-hidden="true"></i>
-              Conversation Starter
-            </a>
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
-              <a className="nav-link" href="#">
-              <i className="fas fa-grin-tongue-squint px-2"></i>
-              Quizzes
-            </a>
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
-              <a className="nav-link" href="#">
-              <i className="fas fa-quote-left px-2"></i>
-              Quotes
-            </a>
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
-              <a className="nav-link" href="#">
-              <i className="fa fa-gamepad px-2" aria-hidden="true"></i>Games
-            </a>
-              </NavLink>
-            </NavItem>
-          </Nav>
-          <NavbarText>    <NavItem>
-              <Route render={({history})=>(
-                <NavLink  onClick={
-                  ()=>{
-                    if(this.state.isAdminPage){
-                      history.push({
-                        pathname : '/'
-                      })
-                    } else {
-                      
-                      history.push({
-                        pathname : '/admin'
-                      })
-                    }
-                  }
-                }>
-                <a className="nav-link" href="#">
-                {/* <i className="fa fa-gamepad px-2" aria-hidden="true"></i>{this.state.isAdminPage ? "to playground" : "to admin"} */}
-              </a>
+      <div className="custom_fix-top">
+        <Navbar color="light" light expand="md" className="float-nav-css">
+          <NavbarBrand href="/">
+            <img src={Logo} alt="logo" />
+          </NavbarBrand>
+          <NavbarToggler onClick={() => this.toggle()} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="mr-auto" navbar>
+              <NavItem>
+                <NavLink href="/components/">
+                  <a className="nav-link" href="#">
+                    <i className="fas fa-glass-cheers px-2"></i>
+                    Party
+                  </a>
                 </NavLink>
-              )}
-              />
-            </NavItem></NavbarText>
-        </Collapse>
+              </NavItem>
+              <NavItem>
+                <NavLink href="https://github.com/reactstrap/reactstrap">
+                  <a className="nav-link" href="#">
+                    <i className="fa fa-comments px-2" aria-hidden="true"></i>
+                    Conversation Starter
+                  </a>
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="https://github.com/reactstrap/reactstrap">
+                  <a className="nav-link" href="#">
+                    <i className="fas fa-grin-tongue-squint px-2"></i>
+                    Quizzes
+                  </a>
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="https://github.com/reactstrap/reactstrap">
+                  <a className="nav-link" href="#">
+                    <i className="fas fa-quote-left px-2"></i>
+                    Quotes
+                  </a>
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="https://github.com/reactstrap/reactstrap">
+                  <a className="nav-link" href="#">
+                    <i className="fa fa-gamepad px-2" aria-hidden="true"></i>
+                    Games
+                  </a>
+                </NavLink>
+              </NavItem>
+            </Nav>
+            <NavbarText>
+              {" "}
+              <NavItem>
+                <Route
+                  render={({ history }) => (
+                    <NavLink
+                      onClick={() => {
+                        if (this.state.isAdminPage) {
+                          history.push({
+                            pathname: "/",
+                          });
+                        } else {
+                          history.push({
+                            pathname: "/admin",
+                          });
+                        }
+                      }}
+                    >
+                      <a className="nav-link" href="#">
+                        {/* <i className="fa fa-gamepad px-2" aria-hidden="true"></i>{this.state.isAdminPage ? "to playground" : "to admin"} */}
+                      </a>
+                    </NavLink>
+                  )}
+                />
+              </NavItem>
+            </NavbarText>
+          </Collapse>
         </Navbar>
 
         {/* <ul className="nav">
