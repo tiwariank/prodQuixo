@@ -268,7 +268,7 @@ export default function QuestionPanel(props) {
             <div className="d-flex position-relative">
               <div className="play-left-nav" onClick={handleBack}>
                 <div className="d-inline arrow_btn">
-                  <KeyboardArrowLeft />
+                <i class="fa fa-chevron-circle-left f-30" aria-hidden="true"></i>
                 </div>
               </div>
               <div className="play-center-container">
@@ -326,7 +326,7 @@ export default function QuestionPanel(props) {
                                 onClick={(event) => handleLike(e, questions[activeStep].question_id +
                                   e.option_id)}
                               >
-                                <div className="optionsMCQrow inline-block">
+                                <div className="optionsMCQrow inline-block pl-2">
                                   <div className="w-100"></div>
                                   <div
                                     className="row"
@@ -372,7 +372,8 @@ export default function QuestionPanel(props) {
               </div>
               <div className="play-right-nav" onClick={() => handleNext()}>
                 <div className="d-inline arrow_btn">
-                  <KeyboardArrowRight />
+                  {/* <KeyboardArrowRight /> */}
+                  <i class="fa fa-chevron-circle-right f-30" aria-hidden="true"></i>
                 </div>
               </div>
             </div>
