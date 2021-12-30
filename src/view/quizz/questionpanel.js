@@ -365,6 +365,7 @@ export default function QuestionPanel(props) {
                 </div>
               </div>
             </div>
+            {reportCard()}
             {/* <MobileStepper
             steps={maxSteps}
             position="static"
@@ -402,7 +403,7 @@ export default function QuestionPanel(props) {
           </div>
         </div>
       </div>
-      {reportCard()}
+     
     </div>
   );
 }
